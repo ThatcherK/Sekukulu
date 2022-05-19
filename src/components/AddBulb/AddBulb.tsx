@@ -3,16 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
-interface Bulbs{
+interface Bulb{
     id: string;
-    colour: string;
-    status: string;
+    getColour:() =>  string;
+    status: boolean;
 }
 
 function AddBulb () {
     const [show, setShow] = useState(false);
     const [colour, setColour] = useState('');
-    const [bulbs, setBulbs] = useState<Bulbs[]>([]);
+    const [bulbs, setBulbs] = useState<Bulb[]>([]);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -21,14 +21,17 @@ function AddBulb () {
     }
 
     const handleAddBulb = () => {
-        const bulbDetails = {
+        let bulbDetails: Bulb = {
             id: uuidv4(),
-            colour: colour,
-            status: 'disabled'
+            status: false,
+            getColour: function(this: typeof bulbDetails) {
+               return  this.status? colour: 'white';
+            } 
         }
         setBulbs(bulbs.concat(bulbDetails))
         setShow(false)
     }
+    console.log(bulbs)
 
     return (
     <>
