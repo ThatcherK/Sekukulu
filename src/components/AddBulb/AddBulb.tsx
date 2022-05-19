@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { BulbLayout } from '../BulbLayout';
 
-interface Bulb{
+export interface Bulb{
     id: string;
     getColour:() =>  string;
     status: boolean;
@@ -58,6 +59,7 @@ function AddBulb () {
             </Button>
         </Modal.Footer>
         </Modal>
+        <BulbLayout bulbs={bulbs}/>
     </>
     );
   }
