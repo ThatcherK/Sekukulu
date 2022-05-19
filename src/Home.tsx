@@ -1,12 +1,12 @@
-import React,{useState} from 'react'
-import Button from 'react-bootstrap/Button';
+import { AddBulb } from './components/BulbAddButton';
+import { PowerButton } from './components/PowerButton';
 
 function Home () {
-    const [status ,setStatus] = useState(false);
-
-    const toggleStatus = () => setStatus(!status);
     return (
-    <Button variant="primary" onClick={toggleStatus}>{status? 'Off': 'On'}</Button>
+    <>
+        <PowerButton />
+        <AddBulb />
+    </>
     );
   }
 
