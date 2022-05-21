@@ -8,7 +8,7 @@ function BulbLayout (props: BulbLayoutProps) {
     return (
     <>
         {props.bulbs.map((bulb) => (
-            <span>{bulb.getColour()}</span>
+            <span style={{backgroundColor: bulb.getColour(), width: '20px', height: '20px', margin: '10px', borderStyle: 'solid'}}/>
         ))}
     </>
     );

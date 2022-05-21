@@ -35,8 +35,8 @@ function AddBulb () {
     console.log(bulbs)
 
     return (
-    <>
-        <Button variant="primary" onClick={handleShow}>Add Bulb</Button>
+    <div className='bulbContainer' >
+        <Button variant="primary" onClick={handleShow} className='addBulbButton'>Add Bulb</Button>
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>Add a bulb</Modal.Title>
@@ -60,7 +60,7 @@ function AddBulb () {
         </Modal.Footer>
         </Modal>
         <BulbLayout bulbs={bulbs}/>
-    </>
+    </div>
     );
   }
 
