@@ -4,64 +4,66 @@ import { Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { BulbLayout } from '../BulbLayout';
 
-export interface Bulb{
-    id: string;
-    getColour:() =>  string;
-    status: boolean;
+export interface Bulb {
+  id: string;
+  getColour: () => string;
+  status: boolean;
 }
 
-function AddBulb () {
-    const [show, setShow] = useState(false);
-    const [colour, setColour] = useState('');
-    const [bulbs, setBulbs] = useState<Bulb[]>([]);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const handleSelectedColor = (event:any) => {
-        setColour(event.target.value)
-    }
+function AddBulb() {
+  const [show, setShow] = useState(false);
+  const [colour, setColour] = useState('');
+  const [bulbs, setBulbs] = useState<Bulb[]>([]);
 
-    const handleAddBulb = () => {
-        let bulbDetails: Bulb = {
-            id: uuidv4(),
-            status: false,
-            getColour: function(this: typeof bulbDetails) {
-               return  this.status? colour: 'white';
-            } 
-        }
-        setBulbs(bulbs.concat(bulbDetails))
-        setShow(false)
-    }
-    console.log(bulbs)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleSelectedColor = (event: any) => {
+    setColour(event.target.value);
+  };
 
-    return (
-    <div className='bulbContainer' >
-        <Button variant="primary" onClick={handleShow} className='addBulbButton'>Add Bulb</Button>
-        <Modal show={show} onHide={handleClose}>
+  const handleAddBulb = () => {
+    const bulbDetails: Bulb = {
+      id: uuidv4(),
+      status: false,
+      getColour: function (this: typeof bulbDetails) {
+        return this.status ? colour : 'white';
+      }
+    };
+    setBulbs(bulbs.concat(bulbDetails));
+    setShow(false);
+  };
+  console.log(bulbs);
+
+  return (
+    <div className="bulbContainer">
+      <Button variant="primary" onClick={handleShow} className="addBulbButton">
+        Add Bulb
+      </Button>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Add a bulb</Modal.Title>
+          <Modal.Title>Add a bulb</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form.Select aria-label="Default select example" onChange={(e) => handleSelectedColor(e)}>
-                <option>Select bulb colour</option>
-                <option value="red">Red</option>
-                <option value="yellow">Yellow</option>
-                <option value="blue">Blue</option>
-                <option value="green">Green</option>
-            </Form.Select>
+          <Form.Select aria-label="Default select example" onChange={(e) => handleSelectedColor(e)}>
+            <option>Select bulb colour</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+          </Form.Select>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={handleAddBulb}>
-                Add
-            </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleAddBulb}>
+            Add
+          </Button>
         </Modal.Footer>
-        </Modal>
-        <BulbLayout bulbs={bulbs}/>
+      </Modal>
+      <BulbLayout bulbs={bulbs} />
     </div>
-    );
-  }
+  );
+}
 
-export {AddBulb}
+export { AddBulb };
