@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AddBulb } from './components/AddBulb';
+import { LightingConfig } from './components/LightingConfig';
 import { PowerButton } from './components/PowerButton';
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
     <>
       <PowerButton onPowerChange={onPowerChange} power={power} />
       <AddBulb power={power} />
+      <LightingConfig />
     </>
   );
 }
