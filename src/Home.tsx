@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <PowerButton onPowerChange={onPowerChange} power={power} />
-      <AddBulb />
+      <AddBulb power={power} />
     </>
   );
 }

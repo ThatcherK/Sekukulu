@@ -1,12 +1,25 @@
+import { useEffect, useState } from 'react';
 import { Bulb } from '../AddBulb';
 
 interface BulbLayoutProps {
   bulbs: Bulb[];
+  power: boolean;
 }
 function BulbLayout(props: BulbLayoutProps) {
+  const [processedBulbs, setProcessedBulbs] = useState<Bulb[]>();
+  const onPowerChange = (bulbs: Bulb[], power: boolean) => {
+    return bulbs?.map((bulb) => {
+      power ? (bulb.status = true) : (bulb.status = false);
+      return bulb;
+    });
+  };
+
+  useEffect(() => {
+    setProcessedBulbs(onPowerChange(props.bulbs, props.power));
+  }, [props.power, props.bulbs]);
   return (
     <>
-      {props.bulbs.map((bulb) => (
+      {processedBulbs?.map((bulb) => (
         <span
           key={bulb.id}
           style={{

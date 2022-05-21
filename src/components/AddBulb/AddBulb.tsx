@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +10,11 @@ export interface Bulb {
   status: boolean;
 }
 
-function AddBulb() {
+interface AddBulbProps {
+  power: boolean;
+}
+
+function AddBulb(props: AddBulbProps) {
   const [show, setShow] = useState(false);
   const [colour, setColour] = useState('');
   const [bulbs, setBulbs] = useState<Bulb[]>([]);
@@ -61,7 +65,7 @@ function AddBulb() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <BulbLayout bulbs={bulbs} />
+      <BulbLayout bulbs={bulbs} power={props.power} />
     </div>
   );
 }
