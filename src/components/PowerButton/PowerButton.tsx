@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-function PowerButton() {
-  const [status, setStatus] = useState(false);
+interface PowerButtonProps {
+  power: boolean;
+  onPowerChange: () => void;
+}
 
-  const toggleStatus = () => setStatus(!status);
+function PowerButton(props: PowerButtonProps) {
   return (
-    <Button variant="primary" onClick={toggleStatus}>
-      {status ? 'Off' : 'On'}
+    <Button variant="primary" onClick={props.onPowerChange}>
+      {props.power ? 'Off' : 'On'}
     </Button>
   );
 }

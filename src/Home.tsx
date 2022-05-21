@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import { AddBulb } from './components/AddBulb';
 import { PowerButton } from './components/PowerButton';
 
 function Home() {
+  const [power, setPower] = useState(false);
+
+  const onPowerChange = () => setPower(!power);
+
   return (
     <>
-      <PowerButton />
+      <PowerButton onPowerChange={onPowerChange} power={power} />
       <AddBulb />
     </>
   );
